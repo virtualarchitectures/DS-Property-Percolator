@@ -45,6 +45,25 @@ In particular Bellingcat highlight the following issues which are also worth con
 >
 > In summary, Zeeschuimer empowers you to gather data in situations where the platforms themselves don’t provide easy access. Use that power responsibly: respect user privacy as much as possible, be aware of biases in the data, and operate within legal/ethical bounds for your jurisdiction and profession. When in doubt, consult with an editor or a legal advisor, especially if dealing with large-scale personal data.
 
+### Platform-Specific Terms of Service
+
+**The Data Stories extension records only what a user already sees while browsing at a normal, human reading pace. It does not send automated requests or crawl pages independently.** However, neither platform's terms recognise this as a meaningful distinction.
+
+Researchers should be aware of the following clauses before collecting or publishing data.
+
+**Daft.ie** ([Terms and Conditions](https://support.daft.ie/hc/en-ie/articles/5127313728273-Terms-and-Conditions-of-use-of-Daft), Section 8, last reviewed 18/05/2026) explicitly prohibits:
+
+- The use of any "robot, spider, website search/retrieval application, or other automated device, process or means to access, retrieve or index any portion of the Website"
+- Accessing or retrieving content "for purposes of constructing or populating any database"
+- To "harvest or otherwise collect by any means any programme material or information from the Website unless authorised"
+- To "mirror, scrape or frame any of the content of the Website" (Section 27)
+
+**MyHome.ie** ([Terms and Conditions](https://news.myhome.ie/uncategorized/terms-and-conditions-36589), Section 7, last reviewed 18/05/2026) explicitly prohibits:
+
+- To "harvest or otherwise collect by any means any content or information (including without limitation email addresses or **details of properties**) from the Site otherwise than as authorised"
+
+**Potential users should review the current terms of each platform before attempting to collect data, and seek appropriate guidance before publishing findings.**
+
 ## Development and Testing
 
 1. Clone the respoitory.
