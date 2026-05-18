@@ -3,12 +3,10 @@
   "manifest_version": 2,
   "name": "DS-Property-schuimer",
   "version": "1.13.1",
-  "homepage_url": "https://github.com/digitalmethodsinitiative/zeeschuimer",
+  "homepage_url": "https://github.com/virtualarchitectures/zeeschuimer",
 
   "browser_specific_settings": {
-    "gecko": {
-      "update_url": "https://extensions.digitalmethods.net/updates.json"
-    }
+    "gecko": {}
   },
 
   "icons": {
