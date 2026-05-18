@@ -41,8 +41,8 @@
       "js/zs-background.js",
       "modules/daft.js",
       "modules/myhome.js",
-      "modules/digs.js",
-      "modules/collegecribs.js"
+      "modules/collegecribs.js",
+      "modules/digs.js"
     ]
   }
 }
