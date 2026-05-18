@@ -1,3 +1,6 @@
+# Release artefacts
+release/
+
 # Development and Build artefacts
 .idea
 .vs
