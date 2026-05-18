@@ -9,17 +9,8 @@ DS-Property-Percolator is a fork of [Zeeschuimer](https://github.com/digitalmeth
 You can, for example, browse TikTok and later export a list of all posts you saw in the order you saw them in. Data can be exported as an NDJSON file and integrated into your own analysis pipeline.
 
 Currently, it supports the following platforms:
-* [TikTok](https://www.tiktok.com) (posts and comments)
-* [Instagram](https://www.instagram.com) (posts only)
-* [X/Twitter](https://www.x.com)
-* [LinkedIn](https://www.linkedin.com)
-* [9gag](https://9gag.com)
-* [Imgur](https://imgur.com)
-* [Douyin](https://douyin.com)
-* [Gab](https://gab.com)
-* [Truth Social](https://truth.social)
-* [Pinterest](https://pinterest.com)
-* [RedNote/Xiaohongshu](https://xiaohongshu.com)
+* [Daft](https://www.daft.ie/)
+* [MyHome](https://www.myhome.ie/)
 
 The extension does not interfere with your normal browsing and never uploads data automatically. It uses the
 [WebRequest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest) browser API to
