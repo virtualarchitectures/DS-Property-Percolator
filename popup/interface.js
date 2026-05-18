@@ -171,20 +171,19 @@ async function get_stats() {
       }
       checker.addEventListener("change", toggle_listening);
 
+      const platformImg = createElement("img", {
+        src:
+          "/images/platform-icons/" +
+          platform.split(".")[0].split("-")[0] +
+          ".png",
+        alt: "",
+      });
+      platformImg.onerror = function () {
+        this.onerror = null;
+        this.src = this.src.replace(".png", ".jpg");
+      };
       row.appendChild(
-        createElement(
-          "td",
-          { class: "platform-icon" },
-          createElement("img", {
-            src:
-              "/images/platform-icons/" +
-              platform.split(".")[0].split("-")[0] +
-              ".png",
-            alt: "",
-            onerror:
-              "this.onerror=null;this.src=this.src.replace('.png','.jpg');",
-          })
-        )
+        createElement("td", { class: "platform-icon" }, platformImg)
       );
       row.appendChild(
         createElement(

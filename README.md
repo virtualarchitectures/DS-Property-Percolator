@@ -14,6 +14,7 @@ Currently, it supports the following platforms:
 
 - [Daft](https://www.daft.ie/)
 - [MyHome](https://www.myhome.ie/)
+- [Digs](https://www.digs.ie/)
 
 ## How to use
 
