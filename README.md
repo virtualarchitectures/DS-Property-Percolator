@@ -47,9 +47,9 @@ In particular Bellingcat highlight the following issues which are also worth con
 
 ### Platform-Specific Terms of Service
 
-**The Data Stories extension records only what a user already sees while browsing at a normal, human reading pace. It does not send automated requests or crawl pages independently.** However, neither platform's terms recognise this as a meaningful distinction.
+**The Data Stories extension only records content that the site sends to the user's browser while the they browse the site at a normal, human reading pace. The extension does not send automated requests or crawl pages independently.** However, neither platform's terms recognise this as a meaningful distinction.
 
-Researchers should be aware of the following clauses before collecting or publishing data.
+Researchers should be aware of the following clauses in each site's T&Cs before collecting or publishing data.
 
 **Daft.ie** ([Terms and Conditions](https://support.daft.ie/hc/en-ie/articles/5127313728273-Terms-and-Conditions-of-use-of-Daft), Section 8, last reviewed 18/05/2026) explicitly prohibits:
 
