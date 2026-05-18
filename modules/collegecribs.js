@@ -51,6 +51,8 @@ zeeschuimer.register_module(
               : null,
             title: item.name || null,
             address: item.address ? item.address.full_string : null,
+            latitude: item.address ? item.address.latitude : null,
+            longitude: item.address ? item.address.longitude : null,
             distance:
               item.distance != null ? item.distance + "km to centre" : null,
             property_type: item.accomodation_type
