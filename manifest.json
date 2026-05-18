@@ -2,8 +2,8 @@
   "description": "Collect data while browsing social media platforms and upload it for analysis later",
   "manifest_version": 2,
   "name": "DS-Property-schuimer",
-  "version": "1.13.1",
-  "homepage_url": "https://github.com/virtualarchitectures/zeeschuimer",
+  "version": "0.1.0-alpha.1",
+  "homepage_url": "https://github.com/virtualarchitectures/DS-Property-Percolator",
 
   "browser_specific_settings": {
     "gecko": {}
