@@ -8,7 +8,7 @@ The Data Stories Property Percolator is a browser extension designed for researc
 
 The extension does not interfere with your normal browsing and never uploads data automatically. It uses the
 [WebRequest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest) browser API to
-locally collect and parse the data that platforms send to your browser as you use them. Data can be exported as an NDJSON file and integrated into your own analysis pipeline.
+locally collect and parse the data that platforms send to your browser as you use them. **Each platform module is a purely passive parser and only processes data that your browser has already fetched as part of normal browsing. It never sends requests of its own to any platform or external service.** Data can be exported as an NDJSON file and integrated into your own analysis pipeline.
 
 Currently, it supports the following platforms:
 
@@ -22,7 +22,7 @@ Install the browser extension in a Firefox browser. A button with the extension 
 
 Note that after installation, the extension icon may not be immediately visible in the toolbar. If you can't find it, look for the 'Extensions' icon (a puzzle piece); clicking it will show all available extensions not shown in the main toolbar.
 
-Next, simply browse a supported platform's site. You will see the amount of items detected per platform increase as you browse. When you have the items you need, you can export the data as an [ndjson](https://ndjson.org) file for use in your own analysis pipeline.
+Next, simply browse a supported platform's site. You will see the amount of items detected per platform increase as you browse. **The extension captures data passively: each module listens to responses the browser receives during your normal browsing session and parses them locally. No additional requests are sent to any platform on your behalf.** When you have the items you need, you can export the data as an [ndjson](https://ndjson.org) file for use in your own analysis pipeline.
 
 ## Limitations
 
