@@ -40,7 +40,8 @@
       "js/lib.js",
       "js/zs-background.js",
       "modules/daft.js",
-      "modules/myhome.js"
+      "modules/myhome.js",
+      "modules/digs.js"
     ]
   }
 }

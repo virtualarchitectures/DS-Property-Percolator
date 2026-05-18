@@ -181,6 +181,8 @@ async function get_stats() {
               platform.split(".")[0].split("-")[0] +
               ".png",
             alt: "",
+            onerror:
+              "this.onerror=null;this.src=this.src.replace('.png','.jpg');",
           })
         )
       );
