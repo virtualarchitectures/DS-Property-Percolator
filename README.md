@@ -14,6 +14,7 @@ Currently, it supports the following platforms:
 
 - [Daft](https://www.daft.ie/)
 - [MyHome](https://www.myhome.ie/)
+- [College Cribs](https://www.collegecribs.ie/)
 - [Digs](https://www.digs.ie/)
 
 ## How to use
@@ -22,7 +23,7 @@ Install the browser extension in a Firefox browser. A button with the extension 
 
 Note that after installation, the extension icon may not be immediately visible in the toolbar. If you can't find it, look for the 'Extensions' icon (a puzzle piece); clicking it will show all available extensions not shown in the main toolbar.
 
-Next, simply browse a supported platform's site. You will see the amount of items detected per platform increase as you browse. **The extension captures data passively: each module listens to responses the browser receives during your normal browsing session and parses them locally. No additional requests are sent to any platform on your behalf.** When you have the items you need, you can export the data as an [ndjson](https://ndjson.org) file for use in your own analysis pipeline.
+Next, simply browse a supported platform's site. You will see the amount of items detected per platform increase as you browse. The extension captures data passively: each module listens to responses the browser receives during your normal browsing session and parses them locally. No additional requests are sent to any platform on your behalf. When you have the items you need, you can export the data as an [ndjson](https://ndjson.org) file for use in your own analysis pipeline.
 
 ## Limitations
 
@@ -48,22 +49,7 @@ In particular Bellingcat highlight the following issues which are also worth con
 
 ### Platform-Specific Terms of Service
 
-**The Data Stories extension only records content that the site sends to the user's browser while the they browse the site at a normal, human reading pace. The extension does not send automated requests or crawl pages independently.** However, neither platform's terms recognise this as a meaningful distinction.
-
-Researchers should be aware of the following clauses in each site's T&Cs before collecting or publishing data.
-
-**Daft.ie** ([Terms and Conditions](https://support.daft.ie/hc/en-ie/articles/5127313728273-Terms-and-Conditions-of-use-of-Daft), Section 8, last reviewed 18/05/2026) explicitly prohibits:
-
-- The use of any "robot, spider, website search/retrieval application, or other automated device, process or means to access, retrieve or index any portion of the Website"
-- Accessing or retrieving content "for purposes of constructing or populating any database"
-- To "harvest or otherwise collect by any means any programme material or information from the Website unless authorised"
-- To "mirror, scrape or frame any of the content of the Website" (Section 27)
-
-**MyHome.ie** ([Terms and Conditions](https://news.myhome.ie/uncategorized/terms-and-conditions-36589), Section 7, last reviewed 18/05/2026) explicitly prohibits:
-
-- To "harvest or otherwise collect by any means any content or information (including without limitation email addresses or **details of properties**) from the Site otherwise than as authorised"
-
-**Potential users should review the current terms of each platform before attempting to collect data, and seek appropriate guidance before publishing findings.**
+The Data Stories extension only records content that the site sends to the user's browser while the they browse the site at a normal, human reading pace. The extension does not send automated requests or crawl pages independently. However, neither platform's terms recognise this as a meaningful distinction. **Potential users should review the current terms of each platform before attempting to collect data, and seek appropriate guidance before publishing findings.**
 
 ## Development and Testing
 
