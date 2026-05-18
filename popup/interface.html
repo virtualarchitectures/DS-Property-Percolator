@@ -250,14 +250,9 @@
       width: 15em;
     }
 
-    .reset-all,
-    #clear-history {
+    .reset-all {
       display: block;
       margin: 0 auto;
-    }
-
-    #clear-history {
-      margin-bottom: 1em;
     }
 
     nav ul {
@@ -275,16 +270,12 @@
       content: " \2022";
     }
 
-    .fourcat-url-container,
     .zeeschuimer-master-switch,
     .import-container {
       text-align: center;
       margin-bottom: 0.5em;
     }
 
-    #upload-status {
-      text-align: center;
-    }
 
     .tooltippable:not(a):not(button) {
       display: inline-block;
@@ -421,39 +412,6 @@
           <i class="fa fa-times"></i> Delete all items
         </button>
       </div>
-    </section>
-    <section id="configuration">
-      <h2><span>Connect to 4CAT</span></h2>
-      <div class="fourcat-url-container">
-        <label>
-          <span>4CAT server URL:</span>
-          <input
-            type="text"
-            placeholder="https://4cat.example.com"
-            id="fourcat-url"
-          />
-          <span
-            class="tooltippable"
-            title="The URL of the 4CAT server to upload datasets to. Make sure you're logged in to this URL with this browser."
-            >?</span
-          >
-        </label>
-      </div>
-      <p id="upload-status"></p>
-    </section>
-    <section>
-      <h2><span>Uploaded datasets</span></h2>
-      <table id="upload-table">
-        <thead>
-          <tr>
-            <th>Platform</th>
-            <th>Items</th>
-            <th>Date</th>
-            <th>Dataset Link</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
     </section>
     <section id="advanced-mode" aria-hidden="true">
       <h2><span>Import from NDJSON</span></h2>

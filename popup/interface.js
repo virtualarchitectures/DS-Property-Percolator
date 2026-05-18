@@ -1,7 +1,4 @@
 const background = browser.extension.getBackgroundPage();
-var have_4cat = false;
-var xhr;
-var is_uploading = false;
 const downloadUrls = new Map();
 
 /**
@@ -59,59 +56,6 @@ function createElement(
   return element;
 }
 
-/**
- * Get URL of 4CAT instance to connect to
- *
- * This is stored in the LocalStorage.
- *
- * @param e
- * @returns {Promise<*>}
- */
-async function get_4cat_url(e) {
-  let url = await background.browser.storage.local.get(["4cat-url"]);
-  if (url["4cat-url"]) {
-    url = url["4cat-url"];
-  } else {
-    url = "";
-  }
-
-  return url;
-}
-
-/**
- * Set URL of 4CAT instance to connect to
- *
- * This is stored in the LocalStorage.
- *
- * @param e
- * @returns {Promise<void>}
- */
-async function set_4cat_url(e) {
-  if (e !== true && !e.target.matches("#fourcat-url")) {
-    return;
-  }
-
-  let url;
-  if (e !== true) {
-    url = document.querySelector("#fourcat-url").value;
-    if (url.length > 0) {
-      if (url.indexOf("://") === -1) {
-        url = "http://" + url;
-      }
-      url = url.split("/").slice(0, 3).join("/");
-    }
-    await background.browser.storage.local.set({ "4cat-url": url });
-  } else {
-    url = await background.browser.storage.local.get(["4cat-url"]);
-    if (url["4cat-url"]) {
-      url = url["4cat-url"];
-    } else {
-      url = "";
-    }
-  }
-
-  have_4cat = url && url.length > 0;
-}
 
 /**
  * Manage availability of interface buttons
@@ -128,19 +72,7 @@ function activate_buttons() {
     );
     let new_status = current;
 
-    if (button.classList.contains("upload-to-4cat") && !is_uploading) {
-      new_status = !(items > 0 && have_4cat);
-      if (new_status && !have_4cat) {
-        button.classList.add("tooltippable");
-        button.setAttribute(
-          "title",
-          "Configure a 4CAT URL to enable uploading to 4CAT"
-        );
-      } else {
-        button.classList.remove("tooltippable");
-        button.setAttribute("title", "");
-      }
-    } else if (
+    if (
       button.classList.contains("download-ndjson") ||
       button.classList.contains("reset")
     ) {
@@ -295,18 +227,8 @@ async function get_stats() {
         },
         ".ndjson"
       );
-      let fourcat_button = createElement(
-        "button",
-        {
-          "data-platform": platform,
-          class: "upload-to-4cat",
-        },
-        "to 4CAT"
-      );
-
       actions.appendChild(clear_button);
       actions.appendChild(download_button);
-      actions.appendChild(fourcat_button);
 
       row.appendChild(actions);
       document.querySelector("#item-table tbody").appendChild(row);
@@ -319,77 +241,6 @@ async function get_stats() {
     }
   }
 
-  let uploads = await background.db.uploads.orderBy("id").reverse().limit(10);
-  let num_uploads = parseInt(
-    await background.db.uploads.orderBy("id").limit(10).count()
-  );
-
-  if (num_uploads > 0 && !document.querySelector("#clear-history")) {
-    document
-      .querySelector("#upload-table")
-      .parentNode.appendChild(
-        createElement("button", { id: "clear-history" }, "Clear history")
-      );
-  } else if (
-    num_uploads === 0 &&
-    !document.querySelector("#upload-table .empty-table-notice")
-  ) {
-    document
-      .querySelector("#upload-table tbody")
-      .appendChild(
-        createElement(
-          "tr",
-          { class: "empty-table-notice" },
-          createElement("td", { colspan: 4 }, "No datasets uploaded so far.")
-        )
-      );
-  }
-
-  await uploads.each((upload) => {
-    let row_id = "upload-" + upload.id;
-    if (!document.querySelector("#" + row_id)) {
-      if (document.querySelector("#upload-table .empty-table-notice")) {
-        document.querySelector("#upload-table .empty-table-notice").remove();
-      }
-      let row = createElement("tr", { id: row_id });
-      row.appendChild(
-        createElement(
-          "td",
-          {},
-          background.zeeschuimer.modules[upload.platform]["name"]
-        )
-      );
-      row.appendChild(
-        createElement("td", {}, new Intl.NumberFormat().format(upload.items))
-      );
-      row.appendChild(
-        createElement(
-          "td",
-          {},
-          new Date(upload.timestamp).toLocaleString("en-us", {
-            weekday: "long",
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          })
-        )
-      );
-      row.appendChild(
-        createElement(
-          "td",
-          {},
-          createElement(
-            "a",
-            { href: upload.url, target: "_blank" },
-            upload.url.split("/")[2]
-          )
-        )
-      );
-      document.querySelector("#upload-table tbody").append(row);
-    }
-  });
-
-  set_4cat_url(true);
   activate_buttons();
   update_icon();
   init_tooltips();
@@ -406,8 +257,6 @@ async function get_stats() {
  * @returns {Promise<void>}
  */
 async function button_handler(event) {
-  let status = document.getElementById("upload-status");
-
   if (event.target.matches(".reset")) {
     let platform = event.target.getAttribute("data-platform");
     await background.db.items
@@ -438,100 +287,6 @@ async function button_handler(event) {
     downloadUrls.set(downloadId, downloadUrl);
 
     event.target.classList.remove("loading");
-  } else if (event.target.matches(".upload-to-4cat")) {
-    let platform = event.target.getAttribute("data-platform");
-    status.innerText = "Creating data file for uploading...";
-    is_uploading = true;
-    let blob = await get_blob(platform);
-
-    document
-      .querySelectorAll(".upload-to-4cat")
-      .forEach((x) => x.setAttribute("disabled", true));
-
-    xhr = new XMLHttpRequest();
-    xhr.aborted = false;
-    let upload_url = await get_4cat_url();
-
-    xhr.open("POST", upload_url + "/api/import-dataset/", true);
-    xhr.setRequestHeader("X-Zeeschuimer-Platform", platform);
-    xhr.onloadstart = function () {
-      status.innerText = "Starting upload...";
-    };
-    xhr.upload.onprogress = function (event) {
-      let pct =
-        event.total === 0
-          ? "???"
-          : Math.round((event.loaded / event.total) * 100);
-      status.innerHTML = "";
-      status.appendChild(createElement("p", {}, pct + "% uploaded"));
-      status.appendChild(
-        createElement("button", { id: "cancel-upload" }, "Cancel upload")
-      );
-    };
-    xhr.onreadystatechange = function () {
-      let response = xhr.responseText.replace(/\n/g, "");
-      if (xhr.readyState === xhr.DONE) {
-        if (xhr.status === 200) {
-          status.innerText = "File uploaded. Waiting for processing to finish.";
-          if (xhr.responseURL.indexOf("/login/") >= 0) {
-            is_uploading = false;
-            status.innerText =
-              "You are not logged in to this 4CAT server! Open it in a separate tab, log in and try again.";
-            return;
-          }
-
-          try {
-            response = JSON.parse(response);
-          } catch (e) {
-            is_uploading = false;
-            status.innerText =
-              "Error during upload: malformed response from 4CAT server.";
-            return;
-          }
-          upload_poll.init(response);
-        } else if (xhr.status === 429) {
-          status.innerText =
-            "4CAT server refused upload, too soon after previous one. Try again in a minute.";
-        } else if (xhr.status === 403) {
-          status.innerText =
-            "Could not log in to 4CAT server. Make sure to log in to 4CAT in this browser.";
-        } else if (
-          xhr.status === 404 &&
-          xhr.responseText.indexOf("Unknown platform or source format") >= 0
-        ) {
-          status.innerText =
-            "The 4CAT server does not accept " +
-            platform +
-            " datasets. The 4CAT " +
-            "administrator may need to enable the data source or upgrade 4CAT.";
-        } else if (xhr.status === 0) {
-          if (!xhr.aborted) {
-            status.innerText =
-              "Could not connect to 4CAT server. Is the URL correct?";
-          }
-        } else {
-          status.innerText =
-            "Error " +
-            xhr.status +
-            " " +
-            xhr.statusText +
-            " during upload. Is the URL correct?";
-        }
-
-        is_uploading = false;
-      }
-    };
-    xhr.send(blob);
-  } else if (event.target.matches("#clear-history")) {
-    await background.db.uploads.clear();
-    document.querySelector("#clear-history").remove();
-    document
-      .querySelectorAll("#upload-table tbody tr")
-      .forEach((x) => x.remove());
-  } else if (event.target.matches("#cancel-upload")) {
-    xhr.abort();
-    xhr.aborted = true;
-    status.innerHTML = "";
   } else if (event.target.matches("#import-button")) {
     if (
       !confirm(
@@ -611,84 +366,6 @@ async function button_handler(event) {
   get_stats();
 }
 
-/**
- * Upload status poller
- */
-const upload_poll = {
-  /**
-   * Start polling for upload status
-   *
-   * Connects to the 4CAT API at the configured URL to check status of a
-   * dataset that has been uploaded and is now being processed.
-   *
-   * @param response
-   * @returns {Promise<void>}
-   */
-  init: async function (response) {
-    let upload_url = await get_4cat_url();
-    let poll_url = upload_url + "/api/check-query/?key=" + response["key"];
-    let status = document.getElementById("upload-status");
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", poll_url, true);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === xhr.DONE) {
-        return;
-      }
-
-      if (xhr.status !== 200) {
-        status.innerText = "Error while checking for upload status.";
-        return;
-      }
-
-      let json_response = xhr.responseText.replace(/\n/g, "");
-      let progress;
-      try {
-        progress = JSON.parse(json_response);
-      } catch (SyntaxError) {
-        status.innerText =
-          "Error during upload: malformed response from 4CAT server.";
-        return;
-      }
-
-      if (!progress["done"]) {
-        status.innerText = "Processing upload: " + progress["status"];
-        setTimeout(() => upload_poll.init(response), 1000);
-      } else {
-        status.innerHTML = "";
-        status.appendChild(createElement("span", {}, "Upload completed! "));
-        status.appendChild(
-          createElement(
-            "a",
-            { href: progress["url"], target: "_blank" },
-            "View dataset."
-          )
-        );
-        upload_poll.add_dataset(progress);
-
-        document
-          .querySelectorAll(".upload-to-4cat")
-          .forEach((x) => x.removeAttribute("disabled"));
-        is_uploading = false;
-      }
-    };
-    xhr.send();
-  },
-
-  /**
-   * Add dataset to Zeeschuimer history
-   *
-   * @param progress
-   * @returns {Promise<void>}
-   */
-  add_dataset: async function (progress) {
-    await background.db.uploads.add({
-      timestamp: new Date().getTime(),
-      url: progress["url"],
-      platform: progress["datasource"],
-      items: progress["rows"],
-    });
-  },
-};
 
 /**
  * Get a NDJON dump of items
@@ -832,13 +509,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   setInterval(get_stats, 1000);
 
   document.addEventListener("click", button_handler);
-  document.addEventListener("keyup", set_4cat_url);
-  document.addEventListener("change", set_4cat_url);
-
-  const fourcat_url = await background.browser.storage.local.get("4cat-url");
-  document.querySelector("#fourcat-url").value = fourcat_url["4cat-url"]
-    ? fourcat_url["4cat-url"]
-    : "";
 
   browser.downloads.onChanged.addListener(downloadListener);
 });
