@@ -17,8 +17,8 @@
   },
 
   "browser_action": {
-    "default_icon": "images/ds-logo-64.png",
-    "default_title": "DS-Property-schuimer Status"
+    "default_icon": "images/icon.png",
+    "default_title": "DS-Property-Percolator"
   },
 
   "permissions": [
