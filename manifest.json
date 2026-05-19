@@ -42,7 +42,8 @@
       "modules/daft.js",
       "modules/myhome.js",
       "modules/collegecribs.js",
-      "modules/digs.js"
+      "modules/digs.js",
+      "modules/hostingpower.js"
     ]
   }
 }
