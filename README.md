@@ -16,6 +16,7 @@ Currently, it supports the following platforms:
 - [MyHome](https://www.myhome.ie/)
 - [College Cribs](https://www.collegecribs.ie/)
 - [Digs](https://www.digs.ie/)
+- [Hosting Power](https://www.hostingpower.ie/)
 
 ## How to use
 
