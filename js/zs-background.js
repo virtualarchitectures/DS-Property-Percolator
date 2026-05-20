@@ -481,7 +481,9 @@ window.zeeschuimer = {
       tabId = tabId.tabId;
     }
 
-    let nav = await db.nav.where({ session: this.session, tab_id: tabId });
+    let nav = await db.nav
+      .where({ session: this.session, tab_id: tabId })
+      .first();
     if (!nav) {
       nav = { session: this.session, tab_id: tabId, index: 0 };
       await db.nav.add(nav);
