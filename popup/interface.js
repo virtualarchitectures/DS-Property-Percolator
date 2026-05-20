@@ -280,7 +280,6 @@ async function button_handler(event) {
     //let blob = await download_blob(platform, 'zeeschuimer-export-' + platform + '-' + date.toISOString().split(".")[0].replace(/:/g, "") + '.ndjson');
     let blob = await get_blob(platform);
     let filename =
-      "zeeschuimer-export-" +
       platform +
       "-" +
       date.toISOString().split(".")[0].replace(/:/g, "") +
