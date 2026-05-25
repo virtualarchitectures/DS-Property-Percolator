@@ -18,6 +18,15 @@ Currently, it supports the following platforms:
 - [Digs](https://www.digs.ie/)
 - [Hosting Power](https://www.hostingpower.ie/)
 
+## Installation
+
+1. Download and install [Firefox](https://www.mozilla.org/firefox/) if you don't already have it.
+2. Go to the [DS-Property-Percolator releases page](https://github.com/virtualarchitectures/DS-Property-Percolator/releases), find the latest release and click the `.xpi` file to download it. Alternatively, you can right-click it and select **Save Link As...**.
+3. Install the downloaded `.xpi`:
+    - Clicking the `.xpi` file should prompt Firefox to install it automatically.
+    - Alternatively, you can try dragging and dropping the `.xpi` file onto the browser window to install it.
+    - Finally, if neither of the above methods work, open Firefox, type `about:addons` in the browser navigation bar, click the gear icon, select **Install Add-on From File...**, and select the downloaded `.xpi` file. Then click **Add** when prompted.
+
 ## How to use
 
 Install the browser extension in a Firefox browser. A button with the extension icon will appear in the browser toolbar. Click it to open the interface. Enable capturing for the sites you want to capture from.
