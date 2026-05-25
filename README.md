@@ -32,13 +32,13 @@ Currently, it supports the following platforms:
 1. Click the extension icon in the Firefox toolbar to open the interface. If it is not visible, look for the Extensions icon (a puzzle piece) and pin it to the toolbar.
 2. Enable capturing for the platforms you want to collect data from.
 3. Browse a supported platform's site. The item count will increase as data is collected.
-4. When you have the data you need, export it as an NDJSON or CSV file.
+4. When you have the data you need yu can export it as a CSV or NDJSON file.
 
-## Tips
+The CSV files are useful for analysis while the NDJSON files can be stored and loaded back into the extension if you want to add to the same dataset in your next browsing session. 
 
-It is always best practices to refresh a page after you toggle collection on for a supported platform's site in the DS-Property-Percolator control panel.
+It is always best practice to refresh a page after you toggle collection on for a supported platform's site in the DS-Property-Percolator control panel.
 
-If you find you are mixing up different kinds of data from the same website website, try separating captures from different parts of the website by activating the collection toggle and exporting data before moving on. 
+If you find you you are getting incompatible data from different parts of the same website, try organising your captures by activating/deactiating collection between different parts of the site, and exporting data before moving on. 
 
 ## Limitations
 
