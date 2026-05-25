@@ -29,11 +29,16 @@ Currently, it supports the following platforms:
 
 ## How to use
 
-Install the browser extension in a Firefox browser. A button with the extension icon will appear in the browser toolbar. Click it to open the interface. Enable capturing for the sites you want to capture from.
+1. Click the extension icon in the Firefox toolbar to open the interface. If it is not visible, look for the Extensions icon (a puzzle piece) and pin it to the toolbar.
+2. Enable capturing for the platforms you want to collect data from.
+3. Browse a supported platform's site. The item count will increase as data is collected.
+4. When you have the data you need, export it as an NDJSON or CSV file.
 
-Note that after installation, the extension icon may not be immediately visible in the toolbar. If you can't find it, look for the 'Extensions' icon (a puzzle piece); clicking it will show all available extensions not shown in the main toolbar.
+## Tips
 
-Next, simply browse a supported platform's site. You will see the amount of items detected per platform increase as you browse. The extension captures data passively: each module listens to responses the browser receives during your normal browsing session and parses them locally. No additional requests are sent to any platform on your behalf. When you have the items you need, you can export the data as an [ndjson](https://ndjson.org) file for use in your own analysis pipeline.
+It is always best practices to refresh a page after you toggle collection on for a supported platform's site in the DS-Property-Percolator control panel.
+
+If you find you are mixing up different kinds of data from the same website website, try separating captures from different parts of the website by activating the collection toggle and exporting data before moving on. 
 
 ## Limitations
 
