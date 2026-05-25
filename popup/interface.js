@@ -74,6 +74,7 @@ function activate_buttons() {
 
     if (
       button.classList.contains("download-ndjson") ||
+      button.classList.contains("download-csv") ||
       button.classList.contains("reset")
     ) {
       new_status = !(items > 0);
