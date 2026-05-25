@@ -65,7 +65,7 @@ The Data Stories extension only records content that the site sends to the user'
 
 1. Update the `"version"` field in `manifest.json`.
 2. Run `./create-zip.sh` to build the release artifacts. The script patches the version string in the interface and produces `release/DS-Property-Percolator-v<version>.zip` and `.xpi`.
-3. Commit the changes: `git add manifest.json popup/interface.html && git commit -m "Release v<version>"`.
+3. Commit the changes.
 4. Tag the commit and push: `git tag v<version> && git push && git push --tags`.
 5. On GitHub, go to **Releases → Draft a new release**, select the tag, write release notes, and attach both files from the `release/` directory.
 
