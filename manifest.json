@@ -9,7 +9,7 @@
     "gecko": {
       "id": "ds-property-percolator@datastories",
       "data_collection_permissions": {
-        "required": [],
+        "required": ["none"],
         "optional": []
       }
     }
