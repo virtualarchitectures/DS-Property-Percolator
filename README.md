@@ -23,22 +23,22 @@ Currently, it supports the following platforms:
 1. Download and install [Firefox](https://www.mozilla.org/firefox/) if you don't already have it.
 2. Go to the [DS-Property-Percolator releases page](https://github.com/virtualarchitectures/DS-Property-Percolator/releases), find the latest release and click the `.xpi` file to download it. Alternatively, you can right-click it and select **Save Link As...**.
 3. Install the downloaded `.xpi`:
-    - Clicking the `.xpi` file should prompt Firefox to install it automatically.
-    - Alternatively, you can try dragging and dropping the `.xpi` file onto the browser window to install it.
-    - Finally, if neither of the above methods work, open Firefox, type `about:addons` in the browser navigation bar, click the gear icon, select **Install Add-on From File...**, and select the downloaded `.xpi` file. Then click **Add** when prompted.
+   - Clicking the `.xpi` file should prompt Firefox to install it automatically.
+   - Alternatively, you can try dragging and dropping the `.xpi` file onto the browser window to install it.
+   - Finally, if neither of the above methods work, open Firefox, type `about:addons` in the browser navigation bar, click the gear icon, select **Install Add-on From File...**, and select the downloaded `.xpi` file. Then click **Add** when prompted.
 
 ## How to use
 
 1. Click the extension icon in the Firefox toolbar to open the interface. If it is not visible, look for the Extensions icon (a puzzle piece) and pin it to the toolbar.
 2. Enable capturing for the platforms you want to collect data from.
 3. Browse a supported platform's site. The item count will increase as data is collected.
-4. When you have the data you need yu can export it as a CSV or NDJSON file.
+4. When you have the data you need you can export it as a CSV or NDJSON file.
 
-The CSV files are useful for analysis while the NDJSON files can be stored and loaded back into the extension if you want to add to the same dataset in your next browsing session. 
+The CSV files are useful for analysis while the NDJSON files can be stored and loaded back into the extension if you want to add to the same dataset in your next browsing session.
 
 It is always best practice to refresh a page after you toggle collection on for a supported platform's site in the DS-Property-Percolator control panel.
 
-If you find you you are getting incompatible data from different parts of the same website, try organising your captures by activating/deactiating collection between different parts of the site, and exporting data before moving on. 
+If you find you you are getting incompatible data from different parts of the same website, try organising your captures by activating/deactiating collection between different parts of the site, and exporting data before moving on.
 
 ## Limitations
 
