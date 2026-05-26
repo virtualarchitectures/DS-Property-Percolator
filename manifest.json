@@ -16,12 +16,12 @@
   },
 
   "icons": {
-    "48": "images/ds-logo-48.png",
-    "96": "images/ds-logo-96.png"
+    "48": "images/zeeschuimer-icon-active.png",
+    "96": "images/ds-icon-96.png"
   },
 
   "browser_action": {
-    "default_icon": "images/icon.png",
+    "default_icon": "images/zeeschuimer-icon-active.png",
     "default_title": "DS-Property-Percolator"
   },
 

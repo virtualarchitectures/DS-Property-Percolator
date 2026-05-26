@@ -116,8 +116,8 @@ function update_icon() {
   ).filter((item) => item.checked);
   const path =
     any_enabled.length > 0
-      ? "/images/ds-icon-active.png"
-      : "/images/ds-icon-inactive.png";
+      ? "/images/zeeschuimer-icon-active.png"
+      : "/images/zeeschuimer-icon-inactive.png";
   document.querySelector("link[rel~=icon]").setAttribute("href", path);
 }
 
